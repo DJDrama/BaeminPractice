@@ -10,10 +10,6 @@ import kotlinx.android.synthetic.main.item_layout_banner.view.*
 
 class ViewPagerAdapter(private val interaction: Interaction) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    companion object {
-        const val ITEM_COUNT = 5
-    }
-
     private var bannerItemList: List<BannerItem>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -24,7 +20,7 @@ class ViewPagerAdapter(private val interaction: Interaction) :
     }
 
     override fun getItemCount(): Int {
-        return ITEM_COUNT
+        return bannerItemList?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

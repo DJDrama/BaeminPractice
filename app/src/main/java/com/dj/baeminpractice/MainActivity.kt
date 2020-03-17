@@ -1,26 +1,26 @@
 package com.dj.baeminpractice
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.dj.baeminpractice.model.BannerItem
-import com.dj.baeminpractice.ui.EventActivity
-import com.dj.baeminpractice.ui.Interaction
-import com.dj.baeminpractice.ui.MainActivityViewModel
-import com.dj.baeminpractice.ui.ViewPagerAdapter
+import com.dj.baeminpractice.model.data.fakeBannerItemList
+import com.dj.baeminpractice.model.data.fakeGridItemList
+import com.dj.baeminpractice.ui.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, Interaction {
     private lateinit var viewPagerAdapter: ViewPagerAdapter
+    private lateinit var gridRecyclerViewAdapter: GridRecyclerViewAdapter
     private lateinit var viewModel: MainActivityViewModel
     private var isRunning = true
 
@@ -28,15 +28,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        viewModel.setBannerItems(
-            listOf(
-                BannerItem(R.drawable.first),
-                BannerItem(R.drawable.second),
-                BannerItem(R.drawable.third),
-                BannerItem(R.drawable.fourth),
-                BannerItem(R.drawable.fifth)
-            )
-        )
+        viewModel.setBannerItems(fakeBannerItemList)
+        viewModel.setGridItems(fakeGridItemList)
 
         iv_hamburger.setOnClickListener(this)
         initViewPager2()
@@ -60,12 +53,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, Interaction {
                 }
             })
         }
+        gridRecyclerView.apply {
+            gridRecyclerViewAdapter = GridRecyclerViewAdapter()
+            layoutManager = GridLayoutManager(this@MainActivity, 4)
+
+            adapter = gridRecyclerViewAdapter
+        }
     }
 
     private fun subscribeObservers() {
         viewModel.bannerItemList.observe(this, Observer { bannerItemList ->
             viewPagerAdapter.submitList(bannerItemList)
         })
+
+        viewModel.gridItemList.observe(this, Observer {gridItemList->
+            gridRecyclerViewAdapter.submitList(gridItemList)
+        })
+
         viewModel.currentPosition.observe(this, Observer { currentPosition ->
             viewPager2.currentItem = currentPosition
         })
@@ -76,7 +80,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, Interaction {
             whenStarted {
                 while (isRunning) {
                     delay(3000)
-                    viewModel.getcurrentPosition()?.let {
+                    viewModel.getCurrentPosition()?.let {
                         viewModel.setCurrentPosition((it.plus(1)) % 5)
                     }
                 }
@@ -108,3 +112,4 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         }
     }
 }
+
