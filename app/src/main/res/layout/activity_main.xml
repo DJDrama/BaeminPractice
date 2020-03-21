@@ -133,6 +133,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/rectangle_all_corner_radius"
+                android:layoutAnimation="@anim/layout_animation_from_bottom_to_top"
                 android:nestedScrollingEnabled="false"
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -1,12 +1,20 @@
 package com.dj.baeminpractice.ui
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.dj.baeminpractice.R
 import com.dj.baeminpractice.model.GridItem
 import kotlinx.android.synthetic.main.item_layout_grid.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class GridRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var gridItemList: List<GridItem>? = null
@@ -38,6 +46,43 @@ class GridRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
         fun bind(gridItem: GridItem) {
             itemView.iv_grid_image.setImageResource(gridItem.image)
             itemView.tv_grid_title.text = gridItem.title
+
+            if(gridItem.image == R.drawable.b){
+                animateView(itemView.iv_grid_image)
+            }
         }
+
+        private fun animateView(ivGridImage: ImageView?) {
+            var count=0
+            ObjectAnimator.ofFloat(ivGridImage, "translationY", 7f).apply {
+                duration = 100
+                repeatCount = 2
+                addListener(object: Animator.AnimatorListener{
+                    override fun onAnimationRepeat(animation: Animator?) {
+                    }
+
+                    override fun onAnimationEnd(animation: Animator?) {
+                        count++
+                        CoroutineScope(Main).launch{
+                            if(count%2==0) {
+                                delay(1000)
+                            }else{
+                                delay(100)
+                            }
+                            start()
+                        }
+                    }
+
+                    override fun onAnimationCancel(animation: Animator?) {
+                    }
+
+                    override fun onAnimationStart(animation: Animator?) {
+                    }
+
+                })
+                start()
+            }
+        }
+
     }
 }
