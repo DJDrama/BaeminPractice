@@ -32,6 +32,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         viewModel.setGridItems(fakeGridItemList)
 
         iv_hamburger.setOnClickListener(this)
+
+        tv_see_detail.setOnClickListener(this)
+        iv_arrow.setOnClickListener(this)
+
+
         initViewPager2()
         subscribeObservers()
         autoScrollViewPager()
@@ -107,6 +112,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, Interaction {
             when (it.id) {
                 R.id.iv_hamburger -> {
 
+                }
+                R.id.tv_see_detail, R.id.iv_arrow->{
+                    if(ll_detail.visibility == View.GONE){
+                        ll_detail.expand(scrollView = nested_scroll_view)
+                        tv_see_detail.text="닫기"
+                        iv_arrow.setImageResource(R.drawable.arrow_up)
+                    }else{ //VISIBLE
+                        ll_detail.collapse()
+                        tv_see_detail.text="자세히보기"
+                        iv_arrow.setImageResource(R.drawable.arrow_down)
+                    }
                 }
             }
         }
