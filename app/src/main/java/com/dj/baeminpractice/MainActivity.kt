@@ -15,6 +15,7 @@ import com.dj.baeminpractice.model.data.fakeBannerItemList
 import com.dj.baeminpractice.model.data.fakeGridItemList
 import com.dj.baeminpractice.ui.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_slide_menu.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         viewModel.setGridItems(fakeGridItemList)
 
         iv_hamburger.setOnClickListener(this)
+        ll_left_area.setOnClickListener(this)
 
         tv_see_detail.setOnClickListener(this)
         iv_arrow.setOnClickListener(this)
@@ -78,6 +80,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         viewModel.currentPosition.observe(this, Observer { currentPosition ->
             viewPager2.currentItem = currentPosition
         })
+
     }
 
     private fun autoScrollViewPager() {
@@ -111,7 +114,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         p0?.let {
             when (it.id) {
                 R.id.iv_hamburger -> {
-
+                    if(drawer_layout.isDrawerOpen(ll_drawer)){
+                        drawer_layout.closeDrawer(ll_drawer)
+                    }else{
+                        drawer_layout.openDrawer(ll_drawer)
+                    }
+                }
+                R.id.ll_left_area->{
+                    if(drawer_layout.isDrawerOpen(ll_drawer)){
+                        drawer_layout.closeDrawer(ll_drawer)
+                    }
                 }
                 R.id.tv_see_detail, R.id.iv_arrow->{
                     if(ll_detail.visibility == View.GONE){
