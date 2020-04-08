@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_eat_what"
+    app:startDestination="@id/eatWhatFragment">
+
+    <fragment
+        android:id="@+id/eatWhatFragment"
+        android:name="com.dj.baeminpractice.ui.b_eatwhat.EatWhatFragment"
+        android:label="EatWhatFragment" />
+</navigation>

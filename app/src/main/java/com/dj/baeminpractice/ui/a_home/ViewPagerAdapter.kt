@@ -1,4 +1,4 @@
-package com.dj.baeminpractice.ui
+package com.dj.baeminpractice.ui.a_home
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="홈"
+        />
+
+    <item
+        android:id="@+id/nav_eat_what"
+        android:icon="@drawable/ic_live_tv_black_24dp"
+        android:title="뭐먹지"
+        />
+
+    <item
+        android:id="@+id/nav_favorite"
+        android:icon="@drawable/ic_favorite_border_black_24dp"
+        android:title="지찜한가게"
+        />
+
+    <item
+        android:id="@+id/nav_order"
+        android:icon="@drawable/ic_reorder_black_24dp"
+        android:title="주문내역"
+        />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_tag_faces_black_24dp"
+        android:title="My배민"
+        />
+</menu>
