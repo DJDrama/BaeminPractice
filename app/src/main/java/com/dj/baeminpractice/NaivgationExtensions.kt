@@ -1,4 +1,4 @@
-package com.dj.baeminpractice.ui
+package com.dj.baeminpractice
 
 /*
  * Copyright 2019, The Android Open Source Project
@@ -25,7 +25,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.dj.baeminpractice.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
@@ -73,9 +72,16 @@ fun BottomNavigationView.setupWithNavController(
         if (this.selectedItemId == graphId) {
             // Update livedata with the selected graph
             selectedNavController.value = navHostFragment.navController
-            attachNavHostFragment(fragmentManager, navHostFragment, index == 0)
+            attachNavHostFragment(
+                fragmentManager,
+                navHostFragment,
+                index == 0
+            )
         } else {
-            detachNavHostFragment(fragmentManager, navHostFragment)
+            detachNavHostFragment(
+                fragmentManager,
+                navHostFragment
+            )
         }
     }
 

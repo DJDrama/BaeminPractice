@@ -1,22 +1,10 @@
 package com.dj.baeminpractice
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.viewpager2.widget.ViewPager2
-import com.dj.baeminpractice.model.BannerItem
-import com.dj.baeminpractice.model.data.fakeBannerItemList
-import com.dj.baeminpractice.model.data.fakeGridItemList
-import com.dj.baeminpractice.ui.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_slide_menu.*
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
