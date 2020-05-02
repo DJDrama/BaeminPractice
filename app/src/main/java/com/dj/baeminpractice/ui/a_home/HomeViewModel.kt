@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dj.baeminpractice.model.BannerItem
 import com.dj.baeminpractice.model.GridItem
-import com.dj.baeminpractice.repository.a_home.HomeRepository
 import com.dj.baeminpractice.repository.a_home.HomeRepositoryImpl
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
