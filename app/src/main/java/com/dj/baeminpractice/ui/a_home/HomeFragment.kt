@@ -14,10 +14,12 @@ import com.dj.baeminpractice.model.BannerItem
 import com.dj.baeminpractice.ui.EventActivity
 import com.dj.baeminpractice.ui.collapse
 import com.dj.baeminpractice.ui.expand
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home), Interaction {
 
     private lateinit var gridRecyclerViewAdapter: GridRecyclerViewAdapter

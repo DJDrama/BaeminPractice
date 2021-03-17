@@ -8,8 +8,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dj.baeminpractice.R
 import com.dj.baeminpractice.model.data.fakeWhatToEatList
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_eat_what.*
 
+@AndroidEntryPoint
 class EatWhatFragment : Fragment(R.layout.fragment_eat_what) {
     private val eatWhatViewModel: EatWhatViewModel by viewModels()
     private lateinit var whatToEatAdapter: WhatToEatAdapter

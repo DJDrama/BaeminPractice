@@ -6,12 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dj.baeminpractice.model.BannerItem
 import com.dj.baeminpractice.model.GridItem
+import com.dj.baeminpractice.repository.a_home.HomeRepository
 import com.dj.baeminpractice.repository.a_home.HomeRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel
+@Inject
+constructor(
+    private val homeRepository: HomeRepository,
+) : ViewModel() {
 
     private val _bannerItemList: MutableLiveData<List<BannerItem>> = MutableLiveData()
     private val _gridItemList: MutableLiveData<List<GridItem>> = MutableLiveData()
@@ -31,11 +39,12 @@ class HomeViewModel : ViewModel() {
     fun setCurrentPosition(position: Int) {
         _currentPosition.value = position
     }
+
     fun getCurrentPosition() = currentPosition.value
 
     fun getBannerItems() {
         viewModelScope.launch {
-            val bannerItemLiveData = HomeRepositoryImpl.getBannerItems()
+            val bannerItemLiveData = homeRepository.getBannerItems()
             withContext(Main) {
                 _bannerItemList.value = bannerItemLiveData
             }
@@ -44,7 +53,7 @@ class HomeViewModel : ViewModel() {
 
     fun getGridItems() {
         viewModelScope.launch {
-            val gridItemLiveData = HomeRepositoryImpl.getGridItems()
+            val gridItemLiveData = homeRepository.getGridItems()
             withContext(Main) {
                 _gridItemList.value = gridItemLiveData
             }

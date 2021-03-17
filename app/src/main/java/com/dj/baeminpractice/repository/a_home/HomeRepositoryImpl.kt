@@ -5,8 +5,8 @@ import com.dj.baeminpractice.model.GridItem
 import com.dj.baeminpractice.model.data.fakeBannerItemList
 import com.dj.baeminpractice.model.data.fakeGridItemList
 
-//singleton
-object HomeRepositoryImpl : HomeRepository {
+
+class HomeRepositoryImpl : HomeRepository {
     override suspend fun getBannerItems(): List<BannerItem> {
         return fakeBannerItemList
     }
